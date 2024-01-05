@@ -11,6 +11,7 @@ private:
 	XMFLOAT3 _position;
 	XMFLOAT3 _rotation;
 	XMFLOAT3 _scale;
+	XMFLOAT4X4 _world;
 
 public:
 	void Update(float dt);

@@ -8,5 +8,5 @@ void Transform::Update(float dt)
 	XMMATRIX rotation = XMMatrixRotationX(_rotation.x) * XMMatrixRotationY(_rotation.y) * XMMatrixRotationZ(_rotation.z);
 	XMMATRIX translation = XMMatrixTranslation(_position.x, _position.y, _position.z);
 
-	XMStoreFloat4x4(world, scale * rotation * translation);
+	XMStoreFloat4x4(&_world, scale * rotation * translation);
 }
