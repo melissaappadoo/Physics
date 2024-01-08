@@ -29,6 +29,7 @@
     </ClInclude>
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Appearance.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX11PhysicsFramework.cpp" />
@@ -43,6 +44,7 @@
     </ClCompile>
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Appearance.cpp" />
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">

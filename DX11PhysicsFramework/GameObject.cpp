@@ -5,6 +5,7 @@ GameObject::GameObject(string type, Transform* transform, Appearance* appearance
 	_parent = nullptr;
 
 	_textureRV = nullptr;
+
 }
 
 GameObject::~GameObject()
