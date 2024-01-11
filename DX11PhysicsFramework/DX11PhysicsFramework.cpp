@@ -467,6 +467,8 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	hr = CreateDDSTextureFromFile(_device, L"Resources\\Textures\\floor.dds", nullptr, &_GroundTextureRV);
 	if (FAILED(hr)) { return hr; }
 
+	_timer = new Timer();
+
 	// Setup Camera
 	XMFLOAT3 eye = XMFLOAT3(0.0f, 2.0f, -1.0f);
 	XMFLOAT3 at = XMFLOAT3(0.0f, 2.0f, 0.0f);
@@ -513,30 +515,40 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	noSpecMaterial.diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 	noSpecMaterial.specular = XMFLOAT4(0.0f, 0.0f, 0.0f, 0.0f);
 
-	Transform* transform = new Transform();
+	Appearance* floorAppearance = new Appearance(planeGeometry, noSpecMaterial);
+	floorAppearance->SetTextureRV(_GroundTextureRV);
 
-	GameObject* gameObject = new GameObject("Floor", transform, gameObject->GetAppearance());
-	gameObject->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
-	gameObject->GetTransform()->SetScale(15.0f, 15.0f, 15.0f);
-	gameObject->GetTransform()->SetRotation(XMConvertToRadians(90.0f), 0.0f, 0.0f);
-	gameObject->GetAppearance()->SetTextureRV(_GroundTextureRV);
+	Appearance* crateAppearance = new Appearance(cubeGeometry, shinyMaterial);
+	crateAppearance->SetTextureRV(_StoneTextureRV);
+
+	Transform* floorTransform = new Transform();
+	floorTransform->SetPosition(0.0f, 0.0f, 0.0f);
+	floorTransform->SetScale(15.0f, 15.0f, 15.0f);
+	floorTransform->SetScale(15.0f, 15.0f, 15.0f);
+	floorTransform->SetRotation(XMConvertToRadians(90.0f), 0.0f, 0.0f);
+
+	GameObject* gameObject = new GameObject("Floor", floorTransform, floorAppearance);
 
 	_gameObjects.push_back(gameObject);
 
 	for (auto i = 0; i < 4; i++)
 	{
-		gameObject = new GameObject("Cube " + i, gameObject->GetTransform(), gameObject->GetAppearance());
-		gameObject->GetTransform()->SetScale(1.0f, 1.0f, 1.0f);
-		gameObject->GetTransform()->SetPosition(-2.0f + (i * 2.5f), 1.0f, 10.0f);
-		gameObject->GetAppearance()->SetTextureRV(_StoneTextureRV);
+		Transform* cubeTransform = new Transform();
+		cubeTransform->SetScale(0.5f, 0.5f, 0.5f);
+		cubeTransform->SetPosition(-2.0f + (i * 2.5f), 1.0f, 10.0f);
+
+		gameObject = new GameObject("Cube " + i, cubeTransform, crateAppearance);
 
 		_gameObjects.push_back(gameObject);
 	}
 
+	Appearance* donutAppearance = new Appearance(herculesGeometry, shinyMaterial);
+	donutAppearance->SetTextureRV(_StoneTextureRV);
+	Transform* donutTransform = new Transform();
+	donutTransform->SetScale(1.0f, 1.0f, 1.0f);
+	donutTransform->SetPosition(-5.0f, 0.5f, 10.0f);
+
 	gameObject = new GameObject("Donut", gameObject->GetTransform(), gameObject->GetAppearance());
-	gameObject->GetTransform()->SetScale(1.0f, 1.0f, 1.0f);
-	gameObject->GetTransform()->SetPosition(-5.0f, 0.5f, 10.0f);
-	gameObject->GetAppearance()->SetTextureRV(_StoneTextureRV);
 	_gameObjects.push_back(gameObject);
 
 	return S_OK;
@@ -585,6 +597,10 @@ DX11PhysicsFramework::~DX11PhysicsFramework()
 
 void DX11PhysicsFramework::Update()
 {
+	_timer->Tick();
+
+	std::string smth;
+
 	//Static initializes this value only once    
 	static ULONGLONG frameStart = GetTickCount64();
 
@@ -594,6 +610,9 @@ void DX11PhysicsFramework::Update()
 
 	static float simpleCount = 0.0f;
 	simpleCount += deltaTime;
+
+	smth = std::to_string(deltaTime);
+	OutputDebugStringA(smth.c_str());
 
 	// Move gameobjects
 	if (GetAsyncKeyState('1'))

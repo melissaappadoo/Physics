@@ -36,11 +36,5 @@ void GameObject::Move(XMFLOAT3 direction)
 
 void GameObject::Draw(ID3D11DeviceContext * pImmediateContext)
 {
-	// We are assuming that the constant buffers and all other draw setup has already taken place
-
-	// Set vertex and index buffers
-	pImmediateContext->IASetVertexBuffers(0, 1, &_appearance->GetGeometryData().vertexBuffer, &_appearance->GetGeometryData().vertexBufferStride, &_appearance->GetGeometryData().vertexBufferOffset);
-	pImmediateContext->IASetIndexBuffer(_appearance->GetGeometryData().indexBuffer, DXGI_FORMAT_R16_UINT, 0);
-
-	pImmediateContext->DrawIndexed(_appearance->GetGeometryData().numberOfIndices, 0, 0);
+	_appearance->Draw(pImmediateContext);
 }

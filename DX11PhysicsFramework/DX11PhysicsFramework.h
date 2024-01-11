@@ -14,7 +14,9 @@
 #include <vector>
 
 #include "GameObject.h"
-#include "Transform.h"
+#include "Timer.h"
+
+#define FPS60 1.0f/60.0f
 
 using namespace DirectX;
 
@@ -58,6 +60,8 @@ private:
 
 	MeshData _objMeshData;
 	vector<GameObject*> _gameObjects;
+
+	Timer * _timer = nullptr;
 
 	Camera * _camera = nullptr;
 	float _cameraOrbitRadius = 7.0f;
