@@ -6,6 +6,7 @@
 
 #include "Transform.h"
 #include "Appearance.h"
+#include "PhysicsModel.h"
 
 using namespace DirectX;
 using namespace std;
@@ -13,7 +14,7 @@ using namespace std;
 class GameObject
 {
 public:
-	GameObject(string type, Transform* transform, Appearance* appearance);
+	GameObject(string type, Transform* transform, Appearance* appearance, PhysicsModel* physicsModel);
 	~GameObject();
 
 	string GetType() const { return _type; }
@@ -28,6 +29,7 @@ public:
 
 	Transform* GetTransform() const { return _transform; }
 	Appearance* GetAppearance() const { return _appearance; }
+	PhysicsModel* GetPhysicsModel() const { return _physicsModel; }
 
 private:
 	GameObject* _parent = nullptr;
@@ -37,6 +39,7 @@ private:
 
 	Transform* _transform;
 	Appearance* _appearance;
+	PhysicsModel* _physicsModel;
 
 	ID3D11ShaderResourceView* _textureRV = nullptr;
 };

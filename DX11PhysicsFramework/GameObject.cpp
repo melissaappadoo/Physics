@@ -1,11 +1,12 @@
 #include "GameObject.h"
 
-GameObject::GameObject(string type, Transform* transform, Appearance* appearance) : _type(type), _transform(transform), _appearance(appearance)
+GameObject::GameObject(string type, Transform* transform, Appearance* appearance, PhysicsModel* physicsModel) : _type(type), _transform(transform), _appearance(appearance)
 {
 	_parent = nullptr;
 
 	_textureRV = nullptr;
 
+	_physicsModel = new PhysicsModel(_transform);
 }
 
 GameObject::~GameObject()
@@ -16,13 +17,13 @@ GameObject::~GameObject()
 
 void GameObject::Update(float dt)
 {
-
-	//XMStoreFloat4x4(&_world, _transform->GetScale() * _transform->GetRotation() * _transform->GetPosition());
-
 	if (_parent != nullptr)
 	{
 		XMStoreFloat4x4(&_world, this->GetWorldMatrix() * _parent->GetWorldMatrix());
 	}
+
+	_physicsModel->Update(dt);
+	_transform->Update(dt);
 }
 
 void GameObject::Move(XMFLOAT3 direction)

@@ -468,6 +468,7 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	if (FAILED(hr)) { return hr; }
 
 	_timer = new Timer();
+	_debug = new Debug();
 
 	// Setup Camera
 	XMFLOAT3 eye = XMFLOAT3(0.0f, 2.0f, -1.0f);
@@ -527,7 +528,9 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	floorTransform->SetScale(15.0f, 15.0f, 15.0f);
 	floorTransform->SetRotation(XMConvertToRadians(90.0f), 0.0f, 0.0f);
 
-	GameObject* gameObject = new GameObject("Floor", floorTransform, floorAppearance);
+	PhysicsModel* floorModel = new PhysicsModel(floorTransform);
+
+	GameObject* gameObject = new GameObject("Floor", floorTransform, floorAppearance, floorModel);
 
 	_gameObjects.push_back(gameObject);
 
@@ -536,19 +539,23 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 		Transform* cubeTransform = new Transform();
 		cubeTransform->SetScale(0.5f, 0.5f, 0.5f);
 		cubeTransform->SetPosition(-2.0f + (i * 2.5f), 1.0f, 10.0f);
+		PhysicsModel* cubeModel = new PhysicsModel(cubeTransform);
 
-		gameObject = new GameObject("Cube " + i, cubeTransform, crateAppearance);
+		gameObject = new GameObject("Cube " + i, cubeTransform, crateAppearance, cubeModel);
 
 		_gameObjects.push_back(gameObject);
 	}
+
+	_gameObjects[1]->GetPhysicsModel()->SetVelocity(XMFLOAT3(0, 1, 0));
 
 	Appearance* donutAppearance = new Appearance(herculesGeometry, shinyMaterial);
 	donutAppearance->SetTextureRV(_StoneTextureRV);
 	Transform* donutTransform = new Transform();
 	donutTransform->SetScale(1.0f, 1.0f, 1.0f);
 	donutTransform->SetPosition(-5.0f, 0.5f, 10.0f);
+	PhysicsModel* donutModel = new PhysicsModel(donutTransform);
 
-	gameObject = new GameObject("Donut", gameObject->GetTransform(), gameObject->GetAppearance());
+	gameObject = new GameObject("Donut", donutTransform, donutAppearance, donutModel);
 	_gameObjects.push_back(gameObject);
 
 	return S_OK;
@@ -612,7 +619,9 @@ void DX11PhysicsFramework::Update()
 	simpleCount += deltaTime;
 
 	smth = std::to_string(deltaTime);
-	OutputDebugStringA(smth.c_str());
+	//OutputDebugStringA(smth.c_str());
+	
+	_debug->DebugPrintF("deltaTime is %f \n the number is %i\n", deltaTime, 2);
 
 	// Move gameobjects
 	if (GetAsyncKeyState('1'))

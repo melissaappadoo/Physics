@@ -15,6 +15,7 @@
 
 #include "GameObject.h"
 #include "Timer.h"
+#include "Debug.h"
 
 #define FPS60 1.0f/60.0f
 
@@ -62,6 +63,7 @@ private:
 	vector<GameObject*> _gameObjects;
 
 	Timer * _timer = nullptr;
+	Debug* _debug = nullptr;
 
 	Camera * _camera = nullptr;
 	float _cameraOrbitRadius = 7.0f;
