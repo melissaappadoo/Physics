@@ -30,3 +30,9 @@ void PhysicsModel::AddForce(XMFLOAT3 force)
 	_netforce.y += force.y;
 	_netforce.z += force.z;
 }
+
+XMFLOAT3 PhysicsModel::GravityForce()
+{
+
+	return XMFLOAT3();
+}
