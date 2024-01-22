@@ -519,8 +519,8 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	Appearance* floorAppearance = new Appearance(planeGeometry, noSpecMaterial);
 	floorAppearance->SetTextureRV(_GroundTextureRV);
 
-	Appearance* crateAppearance = new Appearance(cubeGeometry, shinyMaterial);
-	crateAppearance->SetTextureRV(_StoneTextureRV);
+	//Appearance* crateAppearance = new Appearance(cubeGeometry, shinyMaterial);
+	//crateAppearance->SetTextureRV(_StoneTextureRV);
 
 	Transform* floorTransform = new Transform();
 	floorTransform->SetPosition(0.0f, 0.0f, 0.0f);
@@ -534,7 +534,7 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 
 	_gameObjects.push_back(gameObject);
 
-	for (auto i = 0; i < 4; i++)
+	/*for (auto i = 0; i < 4; i++)
 	{
 		Transform* cubeTransform = new Transform();
 		cubeTransform->SetScale(0.5f, 0.5f, 0.5f);
@@ -558,7 +558,7 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	gameObject = new GameObject("Donut", donutTransform, donutAppearance, donutModel);
 	_gameObjects.push_back(gameObject);
 
-	return S_OK;
+	return S_OK;*/
 }
 
 DX11PhysicsFramework::~DX11PhysicsFramework()
@@ -624,7 +624,7 @@ void DX11PhysicsFramework::Update()
 	_debug->DebugPrintF("deltaTime is %f \n the number is %i\n", deltaTime, 2);
 
 	// Move gameobjects
-	if (GetAsyncKeyState('1'))
+	/*if (GetAsyncKeyState('1'))
 	{
 		_gameObjects[1]->Move(XMFLOAT3(0, 0, -0.02f));
 	}
@@ -639,7 +639,7 @@ void DX11PhysicsFramework::Update()
 	if (GetAsyncKeyState('4'))
 	{
 		_gameObjects[2]->Move(XMFLOAT3(0, 0, 0.02f));
-	}
+	}*/
 	// Update camera
 	float angleAroundZ = XMConvertToRadians(_cameraOrbitAngleXZ);
 

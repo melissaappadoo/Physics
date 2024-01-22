@@ -6,7 +6,9 @@ GameObject::GameObject(string type, Transform* transform, Appearance* appearance
 
 	_textureRV = nullptr;
 
-	_physicsModel = new PhysicsModel(_transform);
+	_physicsModel = physicsModel;
+
+	//_physicsModel = new PhysicsModel(_transform);
 }
 
 GameObject::~GameObject()
