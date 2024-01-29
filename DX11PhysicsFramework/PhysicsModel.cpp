@@ -37,3 +37,10 @@ XMFLOAT3 PhysicsModel::GravityForce()
 
 	return XMFLOAT3();
 }
+
+void PhysicsModel::ApplyImpulse(XMFLOAT3 impulse)
+{
+	_velocity.x += impulse.x;
+	_velocity.y += impulse.y;
+	_velocity.z += impulse.z;
+}

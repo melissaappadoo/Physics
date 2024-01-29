@@ -20,6 +20,8 @@ public:
 	void SetVelocity(XMFLOAT3 velocity) { _velocity = velocity; }
 	XMFLOAT3 GetVelocity() const { return _velocity; }
 
+	void ApplyImpulse(XMFLOAT3 impulse);
+
 private:
 	XMFLOAT3 _acceleration;
 	float _mass = 1.0f;

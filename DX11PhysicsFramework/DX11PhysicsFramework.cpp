@@ -519,8 +519,8 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	Appearance* floorAppearance = new Appearance(planeGeometry, noSpecMaterial);
 	floorAppearance->SetTextureRV(_GroundTextureRV);
 
-	//Appearance* crateAppearance = new Appearance(cubeGeometry, shinyMaterial);
-	//crateAppearance->SetTextureRV(_StoneTextureRV);
+	Appearance* crateAppearance = new Appearance(cubeGeometry, shinyMaterial);
+	crateAppearance->SetTextureRV(_StoneTextureRV);
 
 	Transform* floorTransform = new Transform();
 	floorTransform->SetPosition(0.0f, 0.0f, 0.0f);
@@ -534,7 +534,7 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 
 	_gameObjects.push_back(gameObject);
 
-	/*for (auto i = 0; i < 4; i++)
+	for (auto i = 0; i < 4; i++)
 	{
 		Transform* cubeTransform = new Transform();
 		cubeTransform->SetScale(0.5f, 0.5f, 0.5f);
@@ -558,7 +558,7 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	gameObject = new GameObject("Donut", donutTransform, donutAppearance, donutModel);
 	_gameObjects.push_back(gameObject);
 
-	return S_OK;*/
+	return S_OK;
 }
 
 DX11PhysicsFramework::~DX11PhysicsFramework()
