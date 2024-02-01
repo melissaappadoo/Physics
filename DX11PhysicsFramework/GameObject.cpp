@@ -21,7 +21,7 @@ void GameObject::Update(float dt)
 {
 	if (_parent != nullptr)
 	{
-		XMStoreFloat4x4(&_world, this->GetWorldMatrix() * _parent->GetWorldMatrix());
+		//XMStoreFloat4x4(&_world, this->GetWorldMatrix() * _parent->GetWorldMatrix());
 	}
 
 	_physicsModel->Update(dt);

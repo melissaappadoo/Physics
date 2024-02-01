@@ -21,7 +21,6 @@ public:
 
 	void SetParent(GameObject * parent) { _parent = parent; }
 
-	XMMATRIX GetWorldMatrix() const { return XMLoadFloat4x4(&_world); }
 
 	void Update(float dt);
 	void Move(XMFLOAT3 direction);

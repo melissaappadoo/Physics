@@ -704,7 +704,7 @@ void DX11PhysicsFramework::Draw()
 		_cbData.surface.SpecularMtrl = material.specular;
 
 		// Set world matrix
-		_cbData.World = XMMatrixTranspose(gameObject->GetWorldMatrix());
+		_cbData.World = XMMatrixTranspose(gameObject->GetTransform()->GetWorldMatrix());
 
 		// Set texture
 		if (gameObject->GetAppearance()->HasTexture())

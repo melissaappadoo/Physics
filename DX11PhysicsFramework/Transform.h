@@ -30,5 +30,8 @@ public:
 	void SetRotation(float x, float y, float z) { _rotation.x = x; _rotation.y = y; _rotation.z = z; }
 
 	XMFLOAT3 GetRotation() const { return _rotation; }
+
+	XMMATRIX GetWorldMatrix() const { return XMLoadFloat4x4(&_world); }
+
 };
 

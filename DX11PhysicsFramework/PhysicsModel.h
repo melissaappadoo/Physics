@@ -17,8 +17,8 @@ public:
 	void AddForce(XMFLOAT3 force);
 	XMFLOAT3 GravityForce();
 
-	void SetVelocity(XMFLOAT3 velocity) { _velocity = velocity; }
 	XMFLOAT3 GetVelocity() const { return _velocity; }
+	void SetVelocity(XMFLOAT3 velocity) { _velocity = velocity; }
 
 	void ApplyImpulse(XMFLOAT3 impulse);
 
