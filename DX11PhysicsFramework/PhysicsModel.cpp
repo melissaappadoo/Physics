@@ -3,7 +3,6 @@
 PhysicsModel::PhysicsModel(Transform* transform)
 {
 	_transform = transform;
-	_velocity = XMFLOAT3(0, 1, 0);
 }
 
 void PhysicsModel::Update(float deltaTime)
