@@ -8,6 +8,7 @@ class PhysicsModel
 protected:
 	Transform* _transform;
 	XMFLOAT3 _velocity;
+	//XMFLOAT3 _acceleration;
 	XMFLOAT3 _netforce;
 
 public:
@@ -19,6 +20,7 @@ public:
 
 	XMFLOAT3 GetVelocity() const { return _velocity; }
 	void SetVelocity(XMFLOAT3 velocity) { _velocity = velocity; }
+	void SetAcceleration(XMFLOAT3 acceleration) { _acceleration = acceleration; }
 
 	void ApplyImpulse(XMFLOAT3 impulse);
 

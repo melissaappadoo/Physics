@@ -7,18 +7,17 @@ PhysicsModel::PhysicsModel(Transform* transform)
 
 void PhysicsModel::Update(float deltaTime)
 {
-	/*_acceleration.x += _netforce.x / _mass;
+	_acceleration.x += _netforce.x / _mass;
 	_acceleration.y += _netforce.y / _mass;
 	_acceleration.z += _netforce.z / _mass;
 
-	_velocity.x = _acceleration.x * deltaTime;
-	_velocity.y = _acceleration.y * deltaTime;
-	_velocity.z = _acceleration.z * deltaTime;*/
-
 	XMFLOAT3 position = _transform->GetPosition();
-	position.x *= _velocity.x * deltaTime;
-	position.y *= _velocity.y * deltaTime;
-	position.z *= _velocity.z * deltaTime;
+	_velocity.x += _acceleration.x * deltaTime;
+	_velocity.y += _acceleration.y * deltaTime;
+	_velocity.z += _acceleration.z * deltaTime;
+	position.x += _velocity.x * deltaTime;
+	position.y += _velocity.y * deltaTime;
+	position.z += _velocity.z * deltaTime;
 	_transform->SetPosition(position);
 
 	_netforce = XMFLOAT3(0, 0, 0);
