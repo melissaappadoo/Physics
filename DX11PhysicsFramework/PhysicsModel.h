@@ -27,5 +27,7 @@ public:
 private:
 	XMFLOAT3 _acceleration;
 	float _mass = 1.0f;
+	float _weight;
+	float _gravity = 9.81;
 };
 

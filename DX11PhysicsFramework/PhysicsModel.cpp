@@ -33,8 +33,9 @@ void PhysicsModel::AddForce(XMFLOAT3 force)
 
 XMFLOAT3 PhysicsModel::GravityForce()
 {
-
-	return XMFLOAT3();
+	_weight = _mass * _gravity;
+	_netforce.y -= _weight;
+	return _netforce;
 }
 
 void PhysicsModel::ApplyImpulse(XMFLOAT3 impulse)
