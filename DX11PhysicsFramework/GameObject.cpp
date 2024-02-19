@@ -25,7 +25,7 @@ void GameObject::Update(float dt)
 
 void GameObject::Move(XMFLOAT3 direction)
 {
-	XMFLOAT3 _position = _transform->GetPosition();
+	Vector3 _position = _transform->GetPosition();
 
 	_position.x += direction.x;
 	_position.y += direction.y;

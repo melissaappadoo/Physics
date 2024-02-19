@@ -546,21 +546,20 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 		_gameObjects.push_back(gameObject);
 	}
 
-	_gameObjects[0]->GetPhysicsModel()->SetVelocity(XMFLOAT3(0, 0, 0));
-	_gameObjects[1]->GetPhysicsModel()->SetVelocity(XMFLOAT3(0, 0, 0));
-	_gameObjects[2]->GetPhysicsModel()->SetVelocity(XMFLOAT3(2, 0, 0));
-	_gameObjects[3]->GetPhysicsModel()->SetVelocity(XMFLOAT3(0, 0, 0)); 
-	_gameObjects[4]->GetPhysicsModel()->SetVelocity(XMFLOAT3(0, 0, 0));
-	_gameObjects[0]->GetPhysicsModel()->SetAcceleration(XMFLOAT3(0, 0, 0));
-	_gameObjects[1]->GetPhysicsModel()->SetAcceleration(XMFLOAT3(2, 0, 0));
-	_gameObjects[2]->GetPhysicsModel()->SetAcceleration(XMFLOAT3(0, 0, 0));
-	_gameObjects[3]->GetPhysicsModel()->SetAcceleration(XMFLOAT3(0, 0, 0));
-	_gameObjects[4]->GetPhysicsModel()->SetAcceleration(XMFLOAT3(0, 0, 0));
-	_gameObjects[0]->GetPhysicsModel()->AddForce(XMFLOAT3(0, 0, 0));
-	_gameObjects[1]->GetPhysicsModel()->AddForce(XMFLOAT3(0, 0, 0));
-	_gameObjects[2]->GetPhysicsModel()->AddForce(XMFLOAT3(0, 0, 0));
-	_gameObjects[3]->GetPhysicsModel()->AddForce(XMFLOAT3(0, 0, -1));
-	_gameObjects[4]->GetPhysicsModel()->AddForce(XMFLOAT3(0, 0, 0));
+	_gameObjects[0]->GetPhysicsModel()->SetVelocity(Vector3(0, 0, 0));
+	_gameObjects[1]->GetPhysicsModel()->SetVelocity(Vector3(0, 0, 0));
+	_gameObjects[2]->GetPhysicsModel()->SetVelocity(Vector3(2, 0, 0));
+	_gameObjects[3]->GetPhysicsModel()->SetVelocity(Vector3(0, 0, 0));
+	_gameObjects[0]->GetPhysicsModel()->SetAcceleration(Vector3(0, 0, 0));
+	_gameObjects[1]->GetPhysicsModel()->SetAcceleration(Vector3(2, 0, 0));
+	_gameObjects[2]->GetPhysicsModel()->SetAcceleration(Vector3(0, 0, 0));
+	_gameObjects[3]->GetPhysicsModel()->SetAcceleration(Vector3(0, 0, 0));
+	_gameObjects[4]->GetPhysicsModel()->SetAcceleration(Vector3(0, 0, 0));
+	_gameObjects[0]->GetPhysicsModel()->AddForce(Vector3(0, 0, 0));
+	_gameObjects[1]->GetPhysicsModel()->AddForce(Vector3(0, 0, 0));
+	_gameObjects[2]->GetPhysicsModel()->AddForce(Vector3(0, 0, 0));
+	_gameObjects[3]->GetPhysicsModel()->AddForce(Vector3(0, 0, -1));
+	_gameObjects[4]->GetPhysicsModel()->AddForce(Vector3(0, 0, 0));
 
 	Appearance* donutAppearance = new Appearance(herculesGeometry, shinyMaterial);
 	donutAppearance->SetTextureRV(_StoneTextureRV);
@@ -571,7 +570,7 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 
 	gameObject = new GameObject("Donut", donutTransform, donutAppearance, donutModel);
 	_gameObjects.push_back(gameObject);
-	_gameObjects[5]->GetPhysicsModel()->SetVelocity(XMFLOAT3(0, 0, 0));
+	_gameObjects[5]->GetPhysicsModel()->SetVelocity(Vector3(0, 0, 0));
 	return S_OK;
 }
 

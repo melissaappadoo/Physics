@@ -2,32 +2,31 @@
 
 #include "Transform.h"
 #include "Collider.h"
+#include "Vector3.h"
 
 class PhysicsModel
 {
 protected:
 	Transform* _transform;
-	XMFLOAT3 _velocity;
-	//XMFLOAT3 _acceleration;
-	XMFLOAT3 _netforce;
+	Vector3 _velocity;
+	Vector3 _netforce;
 
 public:
 	PhysicsModel(Transform* transform);
 	void Update(float deltaTime);
 
-	void AddForce(XMFLOAT3 force);
-	XMFLOAT3 GravityForce();
+	void AddForce(Vector3 force);
+	Vector3 GravityForce();
 
-	XMFLOAT3 GetVelocity() const { return _velocity; }
-	void SetVelocity(XMFLOAT3 velocity) { _velocity = velocity; }
-	void SetAcceleration(XMFLOAT3 acceleration) { _acceleration = acceleration; }
+	Vector3 GetVelocity() const { return _velocity; }
+	void SetVelocity(Vector3 velocity) { _velocity = velocity; }
+	void SetAcceleration(Vector3 acceleration) { _acceleration = acceleration; }
 
-	void ApplyImpulse(XMFLOAT3 impulse);
+	void ApplyImpulse(Vector3 impulse);
 
 private:
-	XMFLOAT3 _acceleration;
+	Vector3 _acceleration;
 	float _mass = 1.0f;
-	float _weight;
 	float _gravity = 9.81;
 };
 
