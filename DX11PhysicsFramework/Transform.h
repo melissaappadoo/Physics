@@ -5,6 +5,7 @@
 #include "Vector3.h"
 
 using namespace DirectX;
+class Vector3;
 
 class Transform
 {

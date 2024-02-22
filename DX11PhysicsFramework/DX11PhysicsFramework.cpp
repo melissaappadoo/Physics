@@ -1,5 +1,7 @@
 #include "DX11PhysicsFramework.h"
 
+//class Vector3;
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	PAINTSTRUCT ps;

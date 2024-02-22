@@ -10,6 +10,7 @@
 
 using namespace DirectX;
 using namespace std;
+//class Vector3;
 
 class GameObject
 {

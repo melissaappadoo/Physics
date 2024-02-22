@@ -22,6 +22,8 @@ struct Material
 	XMFLOAT4 specular;
 };
 
+//class Vector3;
+
 class Appearance
 {
 private:

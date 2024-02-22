@@ -2,7 +2,9 @@
 
 #include "Transform.h"
 #include "Collider.h"
-#include "Vector3.h"
+//#include "Vector3.h"
+
+//class Vector3;
 
 class PhysicsModel
 {

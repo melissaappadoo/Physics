@@ -16,10 +16,13 @@
 #include "GameObject.h"
 #include "Timer.h"
 #include "Debug.h"
+#include "Vector3.h"
 
 #define FPS60 1.0f/60.0f
 
 using namespace DirectX;
+
+//class Vector3;
 
 class DX11PhysicsFramework
 {

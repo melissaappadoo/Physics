@@ -58,7 +58,6 @@
     <ClCompile Include="RigidBodyModel.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="SphereCollider.cpp" />
-    <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
