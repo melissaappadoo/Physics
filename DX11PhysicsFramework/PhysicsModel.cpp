@@ -7,17 +7,11 @@ PhysicsModel::PhysicsModel(Transform* transform)
 
 void PhysicsModel::Update(float deltaTime)
 {
-	_acceleration.x += _netforce.x / _mass;
-	_acceleration.y += _netforce.y / _mass;
-	_acceleration.z += _netforce.z / _mass;
+	_acceleration += _netforce / _mass;
 
 	Vector3 position = _transform->GetPosition();
-	_velocity.x += _acceleration.x * deltaTime;
-	_velocity.y += _acceleration.y * deltaTime;
-	_velocity.z += _acceleration.z * deltaTime;
-	position.x += _velocity.x * deltaTime;
-	position.y += _velocity.y * deltaTime;
-	position.z += _velocity.z * deltaTime;
+	_velocity += _acceleration * deltaTime;
+	position += _velocity * deltaTime;
 	_transform->SetPosition(position);
 
 	_netforce = Vector3(0, 0, 0);
@@ -38,7 +32,5 @@ Vector3 PhysicsModel::GravityForce()
 
 void PhysicsModel::ApplyImpulse(Vector3 impulse)
 {
-	_velocity.x += impulse.x;
-	_velocity.y += impulse.y;
-	_velocity.z += impulse.z;
+	_velocity += impulse;
 }

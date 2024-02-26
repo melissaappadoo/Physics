@@ -553,7 +553,7 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	_gameObjects[2]->GetPhysicsModel()->SetVelocity(Vector3(2, 0, 0));
 	_gameObjects[3]->GetPhysicsModel()->SetVelocity(Vector3(0, 0, 0));
 	_gameObjects[0]->GetPhysicsModel()->SetAcceleration(Vector3(0, 0, 0));
-	_gameObjects[1]->GetPhysicsModel()->SetAcceleration(Vector3(2, 0, 0));
+	_gameObjects[1]->GetPhysicsModel()->SetAcceleration(Vector3(10, 0, 0));
 	_gameObjects[2]->GetPhysicsModel()->SetAcceleration(Vector3(0, 0, 0));
 	_gameObjects[3]->GetPhysicsModel()->SetAcceleration(Vector3(0, 0, 0));
 	_gameObjects[4]->GetPhysicsModel()->SetAcceleration(Vector3(0, 0, 0));
@@ -573,6 +573,9 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	gameObject = new GameObject("Donut", donutTransform, donutAppearance, donutModel);
 	_gameObjects.push_back(gameObject);
 	_gameObjects[5]->GetPhysicsModel()->SetVelocity(Vector3(0, 0, 0));
+
+	_timer->Tick();
+
 	return S_OK;
 }
 
@@ -619,24 +622,23 @@ DX11PhysicsFramework::~DX11PhysicsFramework()
 
 void DX11PhysicsFramework::Update()
 {
-	_timer->Tick();
 
-	std::string smth;
+	//std::string smth;
+	//
+	////Static initializes this value only once    
+	//static ULONGLONG frameStart = GetTickCount64();
+	//
+	//ULONGLONG frameNow = GetTickCount64();
+	//float deltaTime = (frameNow - frameStart) / 1000.0f;
+	//frameStart = frameNow;
+	//
+	//static float simpleCount = 0.0f;
+	//simpleCount += deltaTime;
 
-	//Static initializes this value only once    
-	static ULONGLONG frameStart = GetTickCount64();
-
-	ULONGLONG frameNow = GetTickCount64();
-	float deltaTime = (frameNow - frameStart) / 1000.0f;
-	frameStart = frameNow;
-
-	static float simpleCount = 0.0f;
-	simpleCount += deltaTime;
-
-	smth = std::to_string(deltaTime);
+	//smth = std::to_string(deltaTime);
 	//OutputDebugStringA(smth.c_str());
-	
-	_debug->DebugPrintF("deltaTime is %f \n the number is %i\n", deltaTime, 2);
+
+	//_debug->DebugPrintF("deltaTime is %f \n the number is %i\n", deltaTime, 2);
 
 	// Move gameobjects
 	/*if (GetAsyncKeyState('1'))
@@ -651,10 +653,11 @@ void DX11PhysicsFramework::Update()
 	{
 		_gameObjects[2]->Move(XMFLOAT3(0, 0, -0.02f));
 	}
+	*/
 	if (GetAsyncKeyState('4'))
 	{
-		_gameObjects[2]->Move(XMFLOAT3(0, 0, 0.02f));
-	}*/
+		_gameObjects[3]->GetPhysicsModel()->AddForce(Vector3(0, 0, 2.0f));
+	}
 	// Update camera
 	float angleAroundZ = XMConvertToRadians(_cameraOrbitAngleXZ);
 
@@ -668,10 +671,20 @@ void DX11PhysicsFramework::Update()
 	_camera->SetPosition(cameraPos);
 	_camera->Update();
 
-	// Update objects
-	for (auto gameObject : _gameObjects)
+	static float accmulator = 0;
+	accmulator += _timer->GetDeltaTime();
+
+	while (accmulator > FPS60)
 	{
-		gameObject->Update(deltaTime);
+		_timer->Tick();
+
+		// Update objects
+		for (auto gameObject : _gameObjects)
+		{
+			gameObject->Update(FPS60);
+		}
+
+		accmulator -= FPS60;
 	}
 }
 
