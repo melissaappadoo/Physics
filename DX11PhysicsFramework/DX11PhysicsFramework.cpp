@@ -562,6 +562,7 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	_gameObjects[2]->GetPhysicsModel()->AddForce(Vector3(0, 0, 0));
 	_gameObjects[3]->GetPhysicsModel()->AddForce(Vector3(0, 0, -1));
 	_gameObjects[4]->GetPhysicsModel()->AddForce(Vector3(0, 0, 0));
+	_gameObjects[4]->GetPhysicsModel()->_simulateGravity = true;
 
 	Appearance* donutAppearance = new Appearance(herculesGeometry, shinyMaterial);
 	donutAppearance->SetTextureRV(_StoneTextureRV);
